@@ -1,6 +1,6 @@
 <%@ taglib prefix="j" uri="/jodd" %>
 <%@ taglib prefix="jfn" uri="/joddfn" %>
-<%@ page import="jodd.servlet.URLCoder" %>
+<%@ page import="jodd.util.URLCoder" %>
 <html>
 <head>
 	<title>Jodd Madvoc</title>
@@ -16,8 +16,8 @@
 <img src="gfx/madvoc.png" align="left">
 <h2>Some <span style="color:crimson;">Jodd Madvoc</span> quick-and-dirty examples</h2>
 <span style="font-size:11px">ctx path: [<%=request.getContextPath()%>]</span>
-<span style="font-size:11px">this: [<%=URLCoder.build(pageContext).path("/index.html")%>]</span>
-<span style="font-size:11px">other: [<%=URLCoder.build(pageContext).path("/foo").path("/bar").path("/index.html")%>]</span>
+<span style="font-size:11px">this: [<%=URLCoder.build().path("/index.html")%>]</span>
+<span style="font-size:11px">other: [<%=URLCoder.build().path("/foo").path("/bar").path("/index.html")%>]</span>
 <span style="font-size:11px">this2: [<j:url _="/index.html"/>]</span>
 <span style="font-size:11px">this3: [${jfn:url("/index.html", pageContext)}]</span>
 

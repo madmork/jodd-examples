@@ -4,8 +4,8 @@ package jodd.examples.jerry;
 
 import jodd.io.FileUtil;
 import jodd.io.NetUtil;
-import jodd.lagarto.dom.jerry.Jerry;
-import jodd.lagarto.dom.jerry.JerryFunction;
+import jodd.jerry.Jerry;
+import jodd.jerry.JerryFunction;
 import jodd.util.SystemUtil;
 
 import java.io.File;

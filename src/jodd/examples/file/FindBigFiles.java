@@ -12,10 +12,10 @@ import java.io.File;
 public class FindBigFiles {
 	public static void main(String[] args) {
 
-			FindFile ff = new FindFile()
-				.setRecursive(true)
-				.setIncludeDirs(true)
-				.searchPath("c:/");
+		FindFile ff = new FindFile()
+			.setRecursive(true)
+			.setIncludeDirs(true)
+			.searchPath("c:/");
 
 		File f;
 		while ((f = ff.nextFile()) != null) {

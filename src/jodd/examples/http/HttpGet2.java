@@ -2,8 +2,8 @@
 
 package jodd.examples.http;
 
-import jodd.io.http.Http;
-import jodd.io.http.HttpTransfer;
+import jodd.http.Http;
+import jodd.http.HttpTransfer;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

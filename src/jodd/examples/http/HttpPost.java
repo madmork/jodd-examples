@@ -2,9 +2,9 @@
 
 package jodd.examples.http;
 
-import jodd.io.http.Http;
-import jodd.io.http.HttpParams;
-import jodd.io.http.HttpTransfer;
+import jodd.http.Http;
+import jodd.http.HttpParams;
+import jodd.http.HttpTransfer;
 
 import java.io.File;
 import java.io.IOException;

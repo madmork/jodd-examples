@@ -5,7 +5,7 @@ package madvoc;
 import jodd.madvoc.meta.MadvocAction;
 import jodd.madvoc.meta.In;
 import jodd.madvoc.meta.Action;
-import jodd.servlet.upload.FileUpload;
+import jodd.upload.FileUpload;
 
 import java.io.File;
 

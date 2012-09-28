@@ -2,7 +2,7 @@
 
 package madvoc;
 
-import jodd.servlet.upload.FileUpload;
+import jodd.upload.FileUpload;
 
 public class UploadFormBean {
 

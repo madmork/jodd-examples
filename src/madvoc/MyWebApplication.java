@@ -7,7 +7,7 @@ import jodd.madvoc.component.MadvocConfig;
 import jodd.madvoc.component.ActionsManager;
 import jodd.madvoc.component.ResultsManager;
 import jodd.madvoc.config.MadvocConfigurator;
-import jodd.servlet.upload.impl.AdaptiveFileUploadFactory;
+import jodd.upload.impl.AdaptiveFileUploadFactory;
 
 import javax.servlet.ServletContext;
 import java.util.Properties;
