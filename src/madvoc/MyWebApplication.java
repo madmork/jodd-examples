@@ -7,6 +7,7 @@ import jodd.madvoc.component.MadvocConfig;
 import jodd.madvoc.component.ActionsManager;
 import jodd.madvoc.component.ResultsManager;
 import jodd.madvoc.config.MadvocConfigurator;
+import jodd.petite.PetiteContainer;
 import jodd.upload.impl.AdaptiveFileUploadFactory;
 
 import javax.servlet.ServletContext;
@@ -21,6 +22,16 @@ public class MyWebApplication extends PetiteWebApplication {
 	protected void initWebApplication() {
 		System.out.println("MyWebApplication.initWebApplication");
 		super.initWebApplication();
+	}
+
+	@Override
+	protected PetiteContainer providePetiteContainer() {
+		PetiteContainer petiteContainer = super.providePetiteContainer();
+
+		petiteContainer.getConfig().setDetectMixedScopes(true);
+		petiteContainer.getConfig().setWireScopedProxy(true);
+
+		return petiteContainer;
 	}
 
 	@Override

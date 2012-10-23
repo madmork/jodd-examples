@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Scoped person manager.
+ * Scoped item manager.
  */
-@PetiteBean(scope=SessionScope.class)
+@PetiteBean(scope = SessionScope.class)
 public class ItemManager {
 
 	private int idCount;

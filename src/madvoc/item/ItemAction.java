@@ -17,14 +17,26 @@ import java.util.List;
 @InterceptedBy({EchoInterceptor.class, DefaultWebAppInterceptors.class})
 public class ItemAction {
 
+	/**
+	 * Inject item manager, session-scoped bean.
+	 */
+//	@PetiteInject
+//	ItemManager itemManager;
+
+	/**
+	 * Example of mixed scopes. Injecting singleton with
+	 * current item manager of this session.
+	 */
 	@PetiteInject
-	ItemManager itemManager;
+	ItemService itemService;
 
 	@In
 	Item item;
 
 	@Action
 	public String add() {
+		ItemManager itemManager = itemService.getItemManager();
+
 		System.out.println("ItemAction.add");
 		System.out.println(itemManager);
 		itemManager.add(item);
@@ -38,6 +50,8 @@ public class ItemAction {
 
 	@Action
 	public String list() {
+		ItemManager itemManager = itemService.getItemManager();
+
 		System.out.println("ItemAction.list");
 		System.out.println(itemManager);
 		prepare();
@@ -45,6 +59,8 @@ public class ItemAction {
 	}
 
 	private void prepare() {
+		ItemManager itemManager = itemService.getItemManager();
+
 		items = itemManager.getAllItems();
 	}
 

@@ -49,8 +49,8 @@
 <a href="hello.defint1.html?foo=173">default interceptors</a> - intercepted by default set of interceptors; using default ServletConfigInterceptor<br/>
 <a href="hello.defint2.html?foo=173&foo2=">parameters are copied</a> - different setting of ServletConfigInterceptor, where:
 	1) all parameters are copied to attributes, 2) parameters are not injected and 3) empty params are treated as null.<br/>
-<a href="misc.html">misc scopes</a> (invoke twice!) - access different scopes throught their map adapters.<br/>
-<a href="misc.post.html?item.id=1&item.name=requestName">inject id, prepare and execute</a> - prebarable action first injects only id parameters,
+<a href="misc.html">misc scopes</a> (invoke twice!) - access different scopes through their map adapters.<br/>
+<a href="misc.post.html?item.id=1&item.name=requestName">inject id, prepare and execute</a> - preparable action first injects only id parameters,
 	then prepares it and executes the action method at the end.<br/>
 <a href="misc.raw.html?q=2">misc scopes (2)</a> (check console).<br/>
 
@@ -68,7 +68,7 @@
 <h2>More</h2>
 <p>
 <a href="form.html">Form</a> example.<br/>
-<a href="item.list.html">Session scope</a> example - access session holder that is a PetiteBean of SessionScope.<br/>
+<a href="item.list.html">Session scope</a> example with <b>ScopedProxy!</b> - access session holder that is a PetiteBean of SessionScope injected into singleton.<br/>
 <a href="uploadfiles.html">Upload</a> example.<br/>
 <a href="annotation.action.html">default annotation</a> and <a href="annotation.custom.html">custom annotation</a><br/>
 <a href="external.html">External link!</a>
