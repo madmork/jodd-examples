@@ -28,17 +28,54 @@ public class MultithreadParsing {
 			"http://yahoo.com",
 			"http://facebook.com",
 			"http://cnn.com",
-			"http://grooveshark.com"
+			"http://grooveshark.com",
+			"http://youtube.com",
+			"http://oracle.com",
+			"http://java.com/en/",
+			"http://jboss.com",
+			"http://dzone.com",
+			"http://grooveshark.com/",
+			"http://www.last.fm/",
+			"http://www.lego.com",
+			"http://www.sony.com",
+			"http://www.ibm.com",
+			"http://joddframework.org",
+			"http://stop-talking-start-doing.com",
+			"http://clic-clac.me",
+			"http://uphea.com",
+			"http://jquery.com/",
+			"http://allmusic.com",
+			"http://en.wikipedia.org",
+			"http://redhotchilipeppers.com/",
+			"http://www.android.com/",
+			"http://www.linux.com/",
+			"http://www.ubuntu.com/",
+			"https://www.dropbox.com/",
+			"http://www.jazzradio.com/",
+			"http://www.allmovie.com/",
+			"http://www.stripegenerator.com/",
+			"http://www.smashingmagazine.com/",
+			"http://www.mentalfloss.com/",
+			"http://www.exampledepot.com/",
+			"http://codehaus.org/",
+			"http://www.jguru.com/",
+			"http://www.halfbakery.com/",
+			"http://www.cubeecraft.com/",
 	};
 
 	/**
-	 * 1 thread - 14.696  (2.41)
-	 * 2 threads - 9.365  (1.41)
+	 * 27 links:
+	 * 1 thread - 25
+	 * 2 threads - 14.044
+	 *
+	 * 43 links:
+	 * 1 thread: 30
+	 * 2 threads: 16-17
 	 */
 	public static void main(String[] args) throws Exception {
 		Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 		root.setLevel(Level.ERROR);
-		root.detachAndStopAllAppenders();
+		//root.detachAndStopAllAppenders();
 
 		String tempFolder = SystemUtil.getTempDir();
 
@@ -51,12 +88,15 @@ public class MultithreadParsing {
 
 			if (file.exists() == false) {
 				NetUtil.downloadFile(url, file);
+				System.out.println(url);
 			}
-
-			System.out.println(url);
 		}
 
+		System.out.println("\nTotal files: " + files.length);
+
 		int maxThreads = Runtime.getRuntime().availableProcessors();
+
+		System.out.println("\nRunning parsing on " + maxThreads + " threads\n");
 
 		ExecutorService executorService = Executors.newFixedThreadPool(maxThreads);
 
@@ -91,10 +131,11 @@ public class MultithreadParsing {
 
 		Jerry.JerryParser jerryParser = new Jerry.JerryParser();
 
-//		jerryParser.getDOMBuilder().setCalculatePosition(true);
+		jerryParser.getDOMBuilder().setCalculatePosition(true);
 
 		Jerry jerry = jerryParser.parse(CharBuffer.wrap(fileContent));
 
+		System.out.println("done " + file.getName() + " : " + jerry.get(0).getChildNodesCount());
 	}
 
 }
