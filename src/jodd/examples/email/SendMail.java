@@ -3,16 +3,14 @@
 package jodd.examples.email;
 
 import jodd.io.FileUtil;
-import jodd.mail.SmtpServer;
 import jodd.mail.Email;
+import jodd.mail.EmailAttachment;
 import jodd.mail.SendMailSession;
-import jodd.mail.att.ByteArrayAttachment;
+import jodd.mail.SmtpServer;
+import jodd.mail.att.InputStreamAttachment;
 
-import javax.activation.DataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import static jodd.mail.Email.PRIORITY_HIGHEST;
 
@@ -59,7 +57,7 @@ public class SendMail {
 				.to("info@jodd.org")
 				.subject("test4")
 				.addText("text 4")
-				.attachFile("d:\\huh2.jpg")
+				.attach(EmailAttachment.attachment().file("d:\\huh2.jpg"))
 				.priority(PRIORITY_HIGHEST);
 		session.sendMail(email);
 		System.out.println("email #4 sent");
@@ -68,7 +66,7 @@ public class SendMail {
 		byte[] bytes = FileUtil.readBytes("d:\\summer.jpg");
 
 		FileInputStream fis = new FileInputStream("d:\\summer.jpg");
-		ByteArrayAttachment isa = new ByteArrayAttachment(fis, "image/jpeg", "summer2.jpg", null);
+		InputStreamAttachment isa = new InputStreamAttachment(fis, "image/jpeg", "summer2.jpg", null);
 
 		email = Email.create()
 				.from("weird@beotel.rs")
@@ -76,9 +74,9 @@ public class SendMail {
 				.subject("test5")
 				.addText("Здраво!")
 				.addHtml("<html><META http-equiv=Content-Type content=\"text/html; charset=utf-8\"><body><h1>Здраво!</h1><img src='cid:huh2.jpg'></body></html>")
-				.embedFile("d:\\huh2.jpg")
-				.attachFile("d:\\cover.jpg")
-				.attachBytes(bytes, "image/jpeg", "sum.jpg")
+				.embed(EmailAttachment.attachment().file("d:\\huh2.jpg").setInline(true))
+				.attach(EmailAttachment.attachment().file("d:\\cover.jpg"))
+				.attach(EmailAttachment.attachment().bytes(bytes).setContentType("image/jpeg").setName("sum.jpg"))
 				.attach(isa)
 		;
 		session.sendMail(email);
