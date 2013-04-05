@@ -18,6 +18,6 @@ public class MySimpleConfigurator extends AutomagicMadvocConfigurator {
 		actionsManager.register(IncognitoRequest.class, "hello", "/incognito.html");
 
 		// result aliasing
-		madvocConfig.registerPathAlias("/hello.all", "/hi-all");
+		actionsManager.registerPathAlias("/hello.all", "/hi-all");
 	}
 }

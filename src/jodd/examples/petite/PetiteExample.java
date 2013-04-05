@@ -25,10 +25,10 @@ public class PetiteExample {
 
 		// manual registration
 		PetiteContainer petite = new PetiteContainer();
-		petite.registerBean(FooImpl.class);
-		petite.registerBean(Goo.class);
-		petite.registerBean(Boo.class);
-		petite.registerBean(Zoo.class);
+		petite.registerPetiteBean(FooImpl.class, null, null, null, false);
+		petite.registerPetiteBean(Goo.class, null, null, null, false);
+		petite.registerPetiteBean(Boo.class, null, null, null, false);
+		petite.registerPetiteBean(Zoo.class, null, null, null, false);
 
 		Foo foo = (Foo) petite.getBean("foo");
 		System.out.println("> foo");
@@ -53,8 +53,8 @@ public class PetiteExample {
 		// automagic configuration
 		PetiteContainer petite = new PetiteContainer();
 		AutomagicPetiteConfigurator petiteCfg = new AutomagicPetiteConfigurator();
-		petiteCfg.setIncludedEntries(new String[]{"jodd.examples.petite.*"});
-		petiteCfg.setExcludedEntries(new String[]{"jodd.examples.petite.news.*"});
+		petiteCfg.setIncludedEntries("jodd.examples.petite.*");
+		petiteCfg.setExcludedEntries("jodd.examples.petite.news.*");
 		petiteCfg.configure(petite);
 
 		System.out.println("> Get foo");
@@ -77,7 +77,7 @@ public class PetiteExample {
 		}
 
 		System.out.println("> Register foo again");
-		petite.registerBean(FooImpl.class);
+		petite.registerPetiteBean(FooImpl.class, null, null, null, false);
 		System.out.println("> Get zoo, foo is new");
 		zoo = (Zoo) petite.getBean("zoo");
 		zoo.zoo();
@@ -91,15 +91,15 @@ public class PetiteExample {
 		final PetiteContainer petite = new PetiteContainer() {
 
 			@Override
-			protected BeanDefinition registerPetiteBean(String name, Class type, Class<? extends Scope> scopeType, WiringMode wiringMode) {
+			public BeanDefinition registerPetiteBean(Class type, String name, Class<? extends Scope> scopeType, WiringMode wiringMode, boolean define) {
 				System.out.println(":::: " + type + "            " + type.getClassLoader());
-				return super.registerPetiteBean(name, type, scopeType, wiringMode);
+				return super.registerPetiteBean(type, name, scopeType, wiringMode, define);
 			}
 		};
-		petite.registerBean(FooImpl.class);
-		petite.registerBean(Goo.class);
-		petite.registerBean(Boo.class);
-		petite.registerBean(Zoo.class);
+		petite.registerPetiteBean(FooImpl.class, null, null, null, false);
+		petite.registerPetiteBean(Goo.class, null, null, null, false);
+		petite.registerPetiteBean(Boo.class, null, null, null, false);
+		petite.registerPetiteBean(Zoo.class, null, null, null, false);
 
 		// get
 		System.out.println("> Get ZOO");

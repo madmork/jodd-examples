@@ -3,7 +3,6 @@
 package jodd.examples.email;
 
 import jodd.format.Printf;
-import jodd.io.FileUtil;
 import jodd.mail.EmailAttachment;
 import jodd.mail.EmailMessage;
 import jodd.mail.Pop3Server;
@@ -13,10 +12,8 @@ import jodd.mail.SimpleAuthenticator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Receive messages using POP3 SSL.
@@ -34,7 +31,7 @@ public class ReceiveMail {
 		if (emails != null) {
 			for (ReceivedEmail email : emails) {
 				System.out.println("\n\n===[" + email.getMessageNumber() + "]===========================================");
-				Printf.out("%0x", email.getFlags());
+				System.out.println(Printf.str("%0x", email.getFlags()));
 				System.out.println("FROM:" + email.getFrom());
 				System.out.println("TO:" + email.getTo()[0]);
 				System.out.println("SUBJECT:" + email.getSubject());

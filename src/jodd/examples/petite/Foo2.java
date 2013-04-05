@@ -21,8 +21,8 @@ public class Foo2 {
 	public static void main(String[] args) {
 
 		PetiteContainer petite = new PetiteContainer();
-		petite.registerBean(Foo2.class);
-		petite.registerBean(Boo2.class);
+		petite.registerPetiteBean(Foo2.class, null, null, null, false);
+		petite.registerPetiteBean(Boo2.class, null, null, null, false);
 
 		Foo2 foo2 = (Foo2) petite.getBean("foo2");
 

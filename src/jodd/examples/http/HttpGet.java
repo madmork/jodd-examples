@@ -2,14 +2,10 @@
 
 package jodd.examples.http;
 
-import jodd.http.Http;
-import jodd.http.HttpParams;
-import jodd.http.HttpTransfer;
+import jodd.http.HttpRequest;
+import jodd.http.HttpResponse;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
 
 /**
  * Retrieve jodd.org page.
@@ -17,22 +13,15 @@ import java.net.Socket;
 public class HttpGet {
 
 	public static void main(String[] args) throws IOException {
-		HttpTransfer request = Http.createRequest("GET", "http://jodd.org?id=1");
-		request.addHeader("User-Agent", "jodd");
+		HttpRequest request = HttpRequest.get("http://jodd.org?id=1");
+		request.header("User-Agent", "jodd");
 
-		HttpParams httpParams = request.getQueryParameters();
-		httpParams.setParameter("id", "173");
-		request.setQueryParameters(httpParams);
+		request.query("id", "173");
 
 		System.out.println(request);
 
-		Socket socket = new Socket(request.getHost(), request.getPort());
-		OutputStream out = socket.getOutputStream();
-		request.send(out);
+		HttpResponse httpResponse = request.send();
 
-		InputStream in = socket.getInputStream();
-		HttpTransfer response = Http.readResponse(in);
-		System.out.println(response);
-		socket.close();
+		System.out.println(httpResponse.body());
 	}
 }

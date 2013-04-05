@@ -32,16 +32,16 @@ public class Petite {
 
 		PetiteContainer petite = new PetiteContainer() {
 			@Override
-			protected BeanDefinition registerPetiteBean(String name, Class type, Class<? extends Scope> scopeType, WiringMode wiringMode) {
+			public BeanDefinition registerPetiteBean(Class type, String name, Class<? extends Scope> scopeType, WiringMode wiringMode, boolean define) {
 				type = ProxyProxetta.withAspects(pd4log).builder(type).define();
-				return super.registerPetiteBean(name, type, scopeType, wiringMode);
+				return super.registerPetiteBean(type, name, scopeType, wiringMode, define);
 			}
 		};
 		petite.getConfig().setDefaultWiringMode(WiringMode.OPTIONAL);
 
 
-		petite.registerBean("foo", FooImpl.class);
-		petite.registerBean(Boo.class);
+		petite.registerPetiteBean(FooImpl.class, "foo", null, null, false);
+		petite.registerPetiteBean(Boo.class, null, null, null, false);
 
 		Foo foo = (Foo) petite.getBean("foo");
 		foo.foo();
