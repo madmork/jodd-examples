@@ -75,7 +75,7 @@
 </p>
 
 <p>
-This page is also an example of supplement action: it does not have an registered action method,
+This page is also an example of supplement action: it does not have an registered action method.
 </p>
 
 <h2>Rest resources</h2>
